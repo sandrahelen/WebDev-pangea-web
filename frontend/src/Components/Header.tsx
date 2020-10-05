@@ -13,10 +13,10 @@ const Header = () => {
 
 
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="#home"><img id='headerLogo' src={require("./pin.png")} style={{width:25}}/></Navbar.Brand>
+                <Navbar.Brand><img id='headerLogo' alt="pin" src={require("./pin.png")} style={{width:25}}/></Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Alle land</Nav.Link>
-                    <Nav.Link href="#features">Besøkte land</Nav.Link>
+                    <Nav.Link href="alle">Alle land</Nav.Link>
+                    <Nav.Link href="mine">Besøkte land</Nav.Link>
                 </Nav>
             </Navbar>
         </>
