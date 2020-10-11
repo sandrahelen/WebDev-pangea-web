@@ -1,10 +1,10 @@
 import React from "react";
 
-const Alle_land = () => {
+const AlleLand = () => {
     return (
         <>
             <h1>alle land</h1>
         </>
         );
 };
-export default Alle_land;
+export default AlleLand;

@@ -1,10 +1,10 @@
 import React from "react";
 
-const Mine_land = () => {
+const MineLand = () => {
     return (
         <>
             <h1>mine land</h1>
         </>
         );
 };
-export default Mine_land;
+export default MineLand;
