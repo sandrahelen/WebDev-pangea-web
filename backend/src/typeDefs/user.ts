@@ -6,7 +6,7 @@ export default gql`
         users: [User!]!
     }
     extend type Mutation {
-        signUp(username: String!, name: String!): User
+        signUp(username: String!, name: String): User
         signIn(username: String): User
         signOut: Boolean
     }
@@ -14,7 +14,7 @@ export default gql`
     type User {
         id: ID!
         username: String!
-        name: String!
+        name: String
         countries: [Country]
     }
 `

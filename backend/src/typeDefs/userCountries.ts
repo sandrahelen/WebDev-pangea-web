@@ -10,7 +10,7 @@ export default gql`
         id: ID!
         name: String!
         visitedAt: String
-        users: [User!]!
+        users: User!
         countries: [Country!]!
     }
 `

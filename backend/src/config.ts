@@ -6,7 +6,7 @@ export const {
     DB_PASSWORD = "passord",
     DB_HOST = "it2810-70.idi-ntnu.no",
     DB_PORT = 27017,
-    DB_NAME = "database3",
+    DB_NAME = "prosjekt3db",
 
     SESS_NAME = "sid",
     SESS_SECRET = "ssh!secret!",

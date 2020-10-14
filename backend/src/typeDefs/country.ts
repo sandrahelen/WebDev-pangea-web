@@ -5,7 +5,8 @@ export default gql`
         id: ID!
         name: String!
         continent: String
-        capitol: String!
+        capitol: String
+        nationalDish: String
     }
 `
 

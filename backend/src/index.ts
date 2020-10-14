@@ -1,7 +1,7 @@
-/*
+
 import {ApolloServer, gql} from "apollo-server-express";
 import typeDefs from "./typeDefs";
-import resolvers from "./resolvers";
+//import resolvers from "./resolvers";
 import session from "express-session";
 const express = require("express");
 import mongoose from "mongoose";
@@ -23,7 +23,7 @@ import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME,
 
 
         const server = new ApolloServer({
-            typeDefs, resolvers, playground: !IN_PROD
+            typeDefs, playground: true
         });
 
         server.applyMiddleware({app});
@@ -40,6 +40,4 @@ import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME,
 
 
 
-mongoose.connect("mongodb://mongodb://it2810-70.idi.ntnu.no:27017/prosjekt3db")
 
- */
