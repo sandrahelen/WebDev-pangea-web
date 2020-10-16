@@ -4,13 +4,13 @@ export const {
 
     DB_USERNAME = "admin",
     DB_PASSWORD = "passord",
-    DB_HOST = "it2810-70.idi-ntnu.no",
+    DB_HOST = "it2810-70.idi.ntnu.no",
     DB_PORT = 27017,
     DB_NAME = "prosjekt3db",
 
-    SESS_NAME = "sid",
-    SESS_SECRET = "ssh!secret!",
-    SESS_LIFETIME = 1000 * 60 * 60 * 2
+    //SESS_NAME = "sid",
+    //SESS_SECRET = "ssh!secret!",
+    //SESS_LIFETIME = 1000 * 60 * 60 * 2
 
 } = process.env;
 
