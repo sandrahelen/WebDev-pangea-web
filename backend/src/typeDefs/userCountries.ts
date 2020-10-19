@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 export default gql` 
     extend type Mutation {
-        addCountry(countryIds: [ID!]!): Country
+        addCountry(countryNames: [String!]!): Country
     }
     
     

@@ -2,12 +2,12 @@ import mongoose, { Schema } from "mongoose"
 // import { hash } from "bcryptjs";
 
 const userSchema = new Schema({
-    userName: String,
-    name: String,
+    username: String,
     countries: [{
         type: Schema.Types.ObjectId,
         ref: "country"
-    }]
+    }],
+    loggedIn: Boolean
 }, {
     timestamps: true
 });

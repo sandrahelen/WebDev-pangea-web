@@ -7,24 +7,32 @@ import Joi from "joi";
 
 export default {
     Query: {
-        users: (root, args, context, info) => {
-            //TODO: auth, projection, pagination
-        return User.find({})
-        },
-        user: (root, {id}, context, infor) => {
-            //TODO: auth, projection, sanitization
-            if (!mongoose.Type.ObjectId.isValid(id)){
-                throw new UserInputError(`${id} is not a valid user ID`);
-            }
-            return User.findById(id);
-        }
-
+    users: (parent, args, context) => {
+         return mongoose.models.User.find();
+    }
     },
     Mutation: {
-        signUp: async (root, args, context, info) => {
+        signUp: async (root, {username}, context, info) => {
         //TODO: not auth, validation
-        await Joi.validate(args, signUp)
-            return User.create(args)
+        //await Joi.validate(username, signUp)
+        /*if (User.findById(id) === null) {*/
+            User.create(username)
+            //User.findByIdAndUpdate(id).loggedIn = true
+            User.find({'username': username})
+            return User.find({'username': username})
+            //}
+        },
+        signIn: async (root, {username}, context, info) => {
+            if (User.findById(username) !== null) {
+                User.findById(username).loggedIn = true
+                return User.findById(username)
+            }
+        },
+        signOut: async (root, {username}, context, info) => {
+            if (User.findById(username).loggedIn === true) {
+                User.findById(username).loggedIn = false
+            }
+            return User.findById(username).loggedIn
         }
     }
 }
