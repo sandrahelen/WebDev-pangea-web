@@ -1,14 +1,13 @@
-/*
-import { User } from "../models";
+import { User } from "../models/index.ts";
 import mongoose from "mongoose";
 import { UserInputError } from "apollo-server-express";
 import Joi from "joi";
-import { signUp } from "../schemas";
+//import { signUp } from "../schemas/index.ts";
 
 
 export default {
     Query: {
-        users: (root, args, context, infor) => {
+        users: (root, args, context, info) => {
             //TODO: auth, projection, pagination
         return User.find({})
         },
@@ -22,7 +21,7 @@ export default {
 
     },
     Mutation: {
-        signUp: async (root, args, context, infor) => {
+        signUp: async (root, args, context, info) => {
         //TODO: not auth, validation
         await Joi.validate(args, signUp)
             return User.create(args)
@@ -32,4 +31,3 @@ export default {
 
 
 
- */
