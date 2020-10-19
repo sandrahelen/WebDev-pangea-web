@@ -1,6 +1,6 @@
 import {ApolloServer, gql} from "apollo-server-express";
 import typeDefs from "./typeDefs/index.ts";
-//import resolvers from "./resolvers";
+import resolvers from "./resolvers/index";
 import session from "express-session";
 const express = require("express");
 import mongoose from "mongoose";
@@ -23,7 +23,7 @@ import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME}
 
 
         const server = new ApolloServer({
-            typeDefs, playground: true, introspection: true
+            typeDefs, resolvers, playground: true, introspection: true
         });
 
         server.applyMiddleware({app});
