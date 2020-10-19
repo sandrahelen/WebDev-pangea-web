@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const countrySchema = new Schema({
-    name: String!,
+    name: String,
     continent: String,
     capitol: String,
     nationalDish: String

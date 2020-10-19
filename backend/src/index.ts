@@ -1,6 +1,6 @@
 import {ApolloServer, gql} from "apollo-server-express";
 import typeDefs from "./typeDefs/index.ts";
-import resolvers from "./resolvers/index";
+import resolvers from "./resolvers/index.ts";
 import session from "express-session";
 const express = require("express");
 import mongoose from "mongoose";

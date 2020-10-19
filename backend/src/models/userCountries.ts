@@ -1,14 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 
 const userCountriesSchema = new Schema({
-    name: String!,
+    name: String,
     visitedAt: String,
     user: {
-        type: Schema.Type.ObjectId,
+        type: Schema.ObjectId,
         ref: "User"
     },
     countries: [{
-        type: Schema.Type.ObjectId,
+        type: Schema.ObjectId,
         ref: "Country"
 
     }]

@@ -1,4 +1,4 @@
-import {Country} from "../models.index.ts";
+import {Country} from "../models/index.ts";
 
 export default {
     Query: {
