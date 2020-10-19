@@ -1,4 +1,4 @@
-import {User, Country, UserCountries} from "../models/index.ts";
+/*import {User, Country, UserCountries} from "../models/index.ts";
 
 export default {
     Query: {
@@ -19,4 +19,4 @@ export default {
 
         }
     }
-}
+}*/

@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+/*import mongoose, { Schema } from "mongoose";
 
 const userCountriesSchema = new Schema({
     name: String,
@@ -16,4 +16,4 @@ const userCountriesSchema = new Schema({
     timestamps: true
 });
 
-export default mongoose.model("UserCountries", userCountriesSchema);
+export default mongoose.model("UserCountries", userCountriesSchema);*/
