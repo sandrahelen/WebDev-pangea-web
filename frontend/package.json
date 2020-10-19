@@ -12,9 +12,11 @@
     "@types/react-dom": "^16.9.8",
     "@types/reactstrap": "^8.5.1",
     "bootstrap": "^4.5.2",
+    "mdbreact": "^4.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "react-search-field": "^1.1.0",
     "reactstrap": "^8.6.0",
     "typescript": "^3.7.5"
   },

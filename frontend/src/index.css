@@ -17,6 +17,10 @@ code {
   height: 100vh;
 }
 
+.main {
+  margin: auto 2%;
+}
+
 .header {
   position: relative;
   text-align: center;
@@ -31,22 +35,8 @@ code {
   font-family: "Arial Black", Gadget, sans-serif;
   font-size: 10vw;
 }
-/*
-.header-img {
-  width: 100vw;
-  height: 500px;
-  background: url(Components/pangea.png);
-  background-size: cover;
-}*/
 
 img {
   max-width: 100%;
   height: auto;
 }
-
-
-/*.Navbar.brand {
-  background: url(Components/pin.jpg);
-  width: 50px;
-  height: 50px;
-}*/
