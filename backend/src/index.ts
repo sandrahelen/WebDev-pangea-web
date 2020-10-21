@@ -23,7 +23,10 @@ import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME}
 
 
         const server = new ApolloServer({
-            typeDefs, resolvers, playground: true, introspection: true
+            typeDefs, resolvers, playground: true, introspection: true, //mocks:true
+            context: {
+                db: mongoose.connect(`mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`)
+            }
         });
 
         server.applyMiddleware({app});
