@@ -9,7 +9,7 @@ import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME}
 
 (async () => {
     try {
-        await mongoose.connect(
+         await mongoose.connect(
             `mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
             { useNewUrlParser: true } // fikser advarsel om deprecated url string parser
         )
@@ -29,6 +29,7 @@ import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME}
         db.once("open", function (){
             console.log("connected to mongobd");
         });
+
         app.listen({ port: APP_PORT}, () =>
             console.log(`server is running at http://localhost:${APP_PORT}`)
         )

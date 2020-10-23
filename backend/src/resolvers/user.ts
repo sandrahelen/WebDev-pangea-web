@@ -2,10 +2,10 @@ import {User} from "../models/user.ts";
 
 export default {
     Query: {
-        user: async (obj, {id}, context, info) => {
-            console.log(id)
+        user: async (obj, {_id}, context, info) => {
+            console.log(_id)
            try {
-              return await User.findById(id);
+              return await User.findById(_id);
            } catch (e) {
                console.log(e);
                return {};
@@ -13,7 +13,8 @@ export default {
   },
         users: async () => {
             try {
-                return User.find()
+                const allUsers = User.find()
+                return allUsers
             } catch (e) {
                 console.log(e);
                 return [];

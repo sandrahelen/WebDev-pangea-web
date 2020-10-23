@@ -13,10 +13,12 @@ const client = new ApolloClient({
 /*client
   .query({
     query: gql`
-      query {
-      user (id: 1){
-      username
-      }
+      query getUsername {
+      users {
+    _id
+    username
+    loggedIn
+  }
     }
     `
 

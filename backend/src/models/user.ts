@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     }],
     loggedIn: Boolean
 }, {
-    timestamps: true
+    //timestamps: true
+    collection: 'user'
 });
 /*
 userSchema.pre("save", async function (){
@@ -21,4 +22,4 @@ userSchema.pre("save", async function (){
  */
 
 //export default mongoose.model("User", userSchema);
-export const User = mongoose.model('User', userSchema);
+export const User = mongoose.model('user', userSchema);
