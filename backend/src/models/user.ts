@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose"
 // import { hash } from "bcryptjs";
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     username: String,
     countries: [{
         type: Schema.Types.ObjectId,
@@ -20,5 +20,5 @@ userSchema.pre("save", async function (){
 
  */
 
-export default mongoose.model("User", userSchema);
-//export const User = mongoose.model('User', userSchema);
+//export default mongoose.model("User", userSchema);
+export const User = mongoose.model('User', userSchema);

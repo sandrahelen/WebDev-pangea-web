@@ -1,23 +1,36 @@
-import { User } from "../models/index.ts";
-import mongoose from "mongoose";
+import {User} from "../models/user.ts";
 
 export default {
     Query: {
-        user(obj, args, context, info) {
-            return context.db.User.find(user => user.username === args.username)
+        user: async (obj, {id}, context, info) => {
+            console.log(id)
+           try {
+              return await User.findById(id);
+           } catch (e) {
+               console.log(e);
+               return {};
+           }
   },
-        users: (parent, args, context) => {
-             return null
+        users: async () => {
+            try {
+                return User.find()
+            } catch (e) {
+                console.log(e);
+                return [];
+            }
         }
     },
     Mutation: {
-        signUp: async (root, {username}, context, info) => {
-        //TODO: not auth, validation
-        if (User.find({'username': username}) === null) {
-            await User.create(username)
-            //User.findByIdAndUpdate(id).loggedIn = true
-            return await User.find({'username': username})
-            }
+        signUp: async (root, {}, context, info) => {
+        try {
+            const newUser = await User.create({
+                ...User,
+            });
+
+            return User.find();
+        } catch (e){
+            console.log(e)
+        }
         },
         signIn: async (root, {username}, context, info) => {
             if (User.findById(username) !== null) {

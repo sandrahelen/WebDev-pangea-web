@@ -1,6 +1,6 @@
-/*import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const userCountriesSchema = new Schema({
+const userCountriesSchema = new mongoose.Schema({
     name: String,
     visitedAt: String,
     user: {
@@ -16,4 +16,4 @@ const userCountriesSchema = new Schema({
     timestamps: true
 });
 
-export default mongoose.model("UserCountries", userCountriesSchema);*/
+export const UserCoutries =  mongoose.model("UserCountries", userCountriesSchema);
