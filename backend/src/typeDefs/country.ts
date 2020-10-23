@@ -2,15 +2,16 @@ import { gql } from "apollo-server-express";
 
 export default gql`
     extend type Query {
-        country(name: String!): Country
+        #country(name: String!): Country
+        country(_id: ID!): Country
         countries: [Country!]!
     }
     type Country {
-        id: ID!
-        name: String!
+        _id: ID!
+        country: String!
         continent: String
-        capitol: String
-        nationalDish: String
+        city: String
+        dish: String
     }
 `
 

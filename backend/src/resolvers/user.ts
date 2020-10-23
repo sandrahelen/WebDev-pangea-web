@@ -3,7 +3,6 @@ import {User} from "../models/user.ts";
 export default {
     Query: {
         user: async (obj, {_id}, context, info) => {
-            console.log(_id)
            try {
               return await User.findById(_id);
            } catch (e) {

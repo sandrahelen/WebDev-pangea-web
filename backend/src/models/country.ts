@@ -1,12 +1,13 @@
 import mongoose, { Schema } from "mongoose";
 
 const countrySchema = new mongoose.Schema({
-    name: String,
+    country: String,
     continent: String,
-    capitol: String,
-    nationalDish: String
+    city: String,
+    dish: String
 }, {
-    timestamps: true
+    //timestamps: true
+    collection: 'land'
 });
 
-export const Country = mongoose.model("Country", countrySchema);
+export const Country = mongoose.model("land", countrySchema);
