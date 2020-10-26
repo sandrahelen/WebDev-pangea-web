@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.app {
+  background-color: #DFAE74;
+  height: 100vh;
+}
+
+.main {
+  margin: auto 2%;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  width: 100vw;
+}
+
+.header-text {
+  position: absolute;
+  top: 50%;
+  left: 25vw;
+  transform: translate(-50%, -50%);
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 10vw;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
