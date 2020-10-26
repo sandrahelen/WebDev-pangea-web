@@ -11,22 +11,21 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-/*client
-  .query({
-    query: gql`
-      query getUsername {
-      users {
-    _id
-    username
-    loggedIn
-  }
+/*
+client.query({
+  query: gql`
+    query Country {
+      countries {
+        _id
+        country
+        continent
+        dish
+      }
     }
-    `
-
-  })
-  .then(result => console.log(result));*/
-
-
+  `,
+})
+  .then(data => console.log(data))
+  .catch(error => console.error(error));*/
 
 ReactDOM.render(
     <ApolloProvider client={client}>

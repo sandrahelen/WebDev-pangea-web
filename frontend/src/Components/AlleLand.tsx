@@ -1,12 +1,11 @@
 import React from "react";
 import {Table} from "react-bootstrap";
-import SearchField from "react-search-field";
 
 const AlleLand = () => {
     return (
         <>
             <h1>Alle land</h1>
-            <SearchField placeholder="Search..." classNames="search"/>
+
             <Table striped bordered hover variant="dark">
                 <thead>
                 <tr>

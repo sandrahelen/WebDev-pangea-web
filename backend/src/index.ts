@@ -5,6 +5,7 @@ import session from "express-session";
 const express = require("express");
 import mongoose from "mongoose";
 import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME} from "./config.ts";
+const cors = require("cors");
 
 
 (async () => {
@@ -16,6 +17,7 @@ import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME}
         //url skal være it2810-70.idi.ntnu.no
         const db = mongoose.connection;
         const app = express();
+        app.use(cors());
         const server = new ApolloServer({
             typeDefs, resolvers, playground: true, introspection: true, //mocks:true
             //context: {
