@@ -2,7 +2,6 @@ import { gql } from "apollo-server-express";
 
 export default gql`
     extend type Query {
-        #user(_id: ID!): User
         user(username: String):User
         users: [User!]
     }
@@ -10,11 +9,13 @@ export default gql`
         signUp(username: String!): User
         signIn(username: String!): User
         signOut(username: String!): Boolean
+        addCountry(name: String!): Country
     }
 
     type User {
         _id: ID!
         username: String!
         loggedIn: Boolean
+        countries: [Country]
     }
 `

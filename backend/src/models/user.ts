@@ -3,7 +3,8 @@ import mongoose, { Schema } from "mongoose"
 
 const userSchema = new mongoose.Schema({
     username: String,
-    loggedIn: Boolean
+    loggedIn: Boolean,
+    countries: Array
 }, {
     //timestamps: true
     collection: 'user'

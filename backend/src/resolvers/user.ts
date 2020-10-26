@@ -13,8 +13,7 @@ export default {
 
         users: async () => {
             try {
-                const allUsers = User.find()
-                return allUsers
+                return User.find()
             } catch (e) {
                 console.log(e);
                 return [];
@@ -24,17 +23,26 @@ export default {
     Mutation: {
         signUp: async (root, {username}, context, info) => {
             try {
-                const newUser = await User.create({username: username, loggedIn: true});
-                return newUser;
+                const user = await User.findOne({username: username});
+                if(!user){
+                    return User.create({username: username, loggedIn: true});
+                } else {
+                    throw new Error("kan ikke legge til bruker");
+                }
             } catch (e){
-                console.log(e)
+                throw e;
             }
         },
 
         signIn: async (root, {username}, context, info) => {
             try {
-                const updatedUser = await User.update({username: username}, {loggedIn: true});
-                return updatedUser;
+                const user = await User.findOne({username: username});
+                if(user){
+                  await User.updateOne({ username: username}, {loggedIn: true})
+                    return user
+                } else {
+                    throw new Error("Kan ikke logge inn bruker, brukernavnet finnes ikke fra før")
+                }
             } catch (e){
                 console.log(e)
             }
@@ -42,8 +50,13 @@ export default {
 
         signOut: async (root, {username}, context, info) => {
             try {
-                const updatedUser = await User.updateOne({username: username}, {loggedIn: false});
-                return updatedUser;
+                const user = await User.findOne({username: username});
+                if(user){
+                   await User.updateOne({ username: username}, {loggedIn: false})
+                    return user.loggedIn;
+                } else {
+                    throw new Error("Kan ikke logge ut")
+                }
             } catch (e){
                 console.log(e)
             }

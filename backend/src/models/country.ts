@@ -4,7 +4,8 @@ const countrySchema = new mongoose.Schema({
     country: String,
     continent: String,
     city: String,
-    dish: String
+    dish: String,
+    visitedAt: String
 }, {
     //timestamps: true
     collection: 'land'

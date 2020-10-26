@@ -12,8 +12,7 @@ export default {
         },
         countries: async () => {
             try {
-                const allCountries = Country.find()
-                return allCountries
+                return Country.find()
             } catch (e) {
                 console.log(e);
                 return [];

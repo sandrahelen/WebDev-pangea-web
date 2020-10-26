@@ -12,6 +12,7 @@ export default gql`
         continent: String
         city: String
         dish: String
+        visitedAt: String
     }
 `
 
