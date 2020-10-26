@@ -2,14 +2,15 @@ import {User} from "../models/user.ts";
 
 export default {
     Query: {
-        user: async (obj, {_id}, context, info) => {
-           try {
-              return await User.findById(_id);
-           } catch (e) {
-               console.log(e);
-               return {};
-           }
-  },
+        user: async (obj, {username}, context, info) => {
+            try {
+                return await User.findOne({username: username});
+            } catch (e) {
+                console.log(e);
+                return {};
+            }
+        },
+
         users: async () => {
             try {
                 const allUsers = User.find()
@@ -21,31 +22,35 @@ export default {
         }
     },
     Mutation: {
-        signUp: async (root, {}, context, info) => {
-        try {
-            const newUser = await User.create({
-                ...User,
-            });
+        signUp: async (root, {username}, context, info) => {
+            try {
+                const newUser = await User.create({username: username, loggedIn: true});
+                return newUser;
+            } catch (e){
+                console.log(e)
+            }
+        },
 
-            return User.find();
-        } catch (e){
-            console.log(e)
-        }
-        },
         signIn: async (root, {username}, context, info) => {
-            if (User.findById(username) !== null) {
-                User.findById(username).loggedIn = true
-                return User.findById(username)
+            try {
+                const updatedUser = await User.update({username: username}, {loggedIn: true});
+                return updatedUser;
+            } catch (e){
+                console.log(e)
             }
         },
+
         signOut: async (root, {username}, context, info) => {
-            if (User.findById(username).loggedIn === true) {
-                User.findById(username).loggedIn = false
+            try {
+                const updatedUser = await User.updateOne({username: username}, {loggedIn: false});
+                return updatedUser;
+            } catch (e){
+                console.log(e)
             }
-            return User.findById(username).loggedIn
         }
     }
 }
+
 
 
 
