@@ -2,8 +2,7 @@ import { gql } from "apollo-server-express";
 
 export default gql`
     extend type Query {
-        #country(name: String!): Country
-        country(_id: ID!): Country
+        country(country: String): Country
         countries: [Country!]!
     }
     type Country {

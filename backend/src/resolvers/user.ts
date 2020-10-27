@@ -44,7 +44,7 @@ export default {
                     throw new Error("Kan ikke logge inn bruker, brukernavnet finnes ikke fra før")
                 }
             } catch (e){
-                console.log(e)
+                throw e;
             }
         },
 
@@ -58,7 +58,20 @@ export default {
                     throw new Error("Kan ikke logge ut")
                 }
             } catch (e){
-                console.log(e)
+                throw e;
+            }
+        },
+
+        addCountry: async (root, {country, username}, context, info) => {
+            try {
+                //const user = await User.findOne({ username: username })
+                //if (user){
+                    //await user.countries.push({ country: country});
+                await User.updateOne({ username: username}, {$addToSet: {countries: country}})
+                    //return user.countries;
+               // }
+            } catch (e) {
+                throw e;
             }
         }
     }

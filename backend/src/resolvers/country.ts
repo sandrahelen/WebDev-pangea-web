@@ -2,9 +2,9 @@ import {Country} from "../models/country.ts";
 
 export default {
     Query: {
-        country: async (obj, {_id}, context, info) => {
+        country: async (obj, {country}, context, info) => {
            try {
-              return await Country.findById(_id);
+              return await Country.findOne({country: country});
            } catch (e) {
                console.log(e);
                return {};
