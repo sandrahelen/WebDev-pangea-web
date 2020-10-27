@@ -5,7 +5,6 @@ const AlleLand = () => {
     return (
         <>
             <h1>Alle land</h1>
-
             <Table striped bordered hover variant="dark">
                 <thead>
                 <tr>
@@ -34,3 +33,5 @@ const AlleLand = () => {
         );
 };
 export default AlleLand;
+
+//       <SearchField placeholder="Search..." classNames="search"/>
