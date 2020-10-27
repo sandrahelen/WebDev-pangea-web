@@ -10,12 +10,11 @@ const GET_USER = gql`
     }
 `;
 
-//const MineLand = () => {
-function MineLand() {
+const MineLand = () => {
 
     const { loading, error, data } = useQuery(GET_USER, {variables: { username: 'test5' },});
-  if (loading) return null;
-  if (error) return `Error! ${error}`;
+    if (loading) return null;
+    if (error) return <p>Error! ${error}</p>
 
     return (
         <h1>Hello {data.user.username}!</h1>
