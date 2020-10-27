@@ -3,10 +3,6 @@ import mongoose, { Schema } from "mongoose"
 
 const userSchema = new mongoose.Schema({
     username: String,
-    countries: [{
-        type: Schema.Types.ObjectId,
-        ref: "country"
-    }],
     loggedIn: Boolean
 }, {
     //timestamps: true

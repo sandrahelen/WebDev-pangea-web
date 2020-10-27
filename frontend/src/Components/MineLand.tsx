@@ -1,10 +1,34 @@
 import React from "react";
+import { gql, useQuery } from '@apollo/client';
 import {Table} from "react-bootstrap";
 
-const MineLand = () => {
+const GET_USER = gql`
+    query user($username: String!) {
+        user(username: $username) {
+            username
+        }
+    }
+`;
+
+//const MineLand = () => {
+function MineLand() {
+
+    const { loading, error, data } = useQuery(GET_USER, {variables: { username: 'test5' },});
+  if (loading) return null;
+  if (error) return `Error! ${error}`;
+
     return (
-        <>
+        <h1>Hello {data.user.username}!</h1>
+
+        );
+};
+export default MineLand;
+
+/*
+<>
             <h1>Mine land</h1>
+
+
             <Table striped bordered hover variant="dark">
                 <thead>
                 <tr>
@@ -30,6 +54,4 @@ const MineLand = () => {
                 </tbody>
             </Table>
         </>
-        );
-};
-export default MineLand;
+ */
