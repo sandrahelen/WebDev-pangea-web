@@ -4,6 +4,7 @@ import resolvers from "./resolvers/index.ts";
 import session from "express-session";
 const express = require("express");
 import mongoose from "mongoose";
+const cors = require("cors");
 import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME} from "./config.ts";
 const cors = require("cors");
 
@@ -26,6 +27,7 @@ const cors = require("cors");
         });
 
         server.applyMiddleware({app});
+        app.use(cors());
 
         db.on("error", console.error.bind(console, "connection error:"))
         db.once("open", function (){

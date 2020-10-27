@@ -1,9 +1,10 @@
 import mongoose, { Schema } from "mongoose"
-// import { hash } from "bcryptjs";
+import {countrySchema} from "./country.ts";
 
 const userSchema = new mongoose.Schema({
     username: String,
-    loggedIn: Boolean
+    loggedIn: Boolean,
+    countries: [countrySchema]
 }, {
     //timestamps: true
     collection: 'user'
