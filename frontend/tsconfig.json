@@ -4,7 +4,9 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "ES2015",
+      "DOM"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -14,12 +16,17 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "types": ["jest"],
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src",
+    "src/*.ts"
+  ],
+  "exclude": [
+    "src/*.test.ts"
   ]
 }
