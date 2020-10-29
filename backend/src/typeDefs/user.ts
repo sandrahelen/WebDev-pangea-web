@@ -4,6 +4,7 @@ export default gql`
     extend type Query {
         user(username: String):User
         users: [User!]
+        userCountries(username: String!): User
     }
     extend type Mutation {
         signUp(username: String!): User
@@ -16,6 +17,6 @@ export default gql`
         _id: ID!
         username: String!
         loggedIn: Boolean
-        countries: [Country]
+        userCountries: [Country]
     }
 `

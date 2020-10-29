@@ -10,7 +10,7 @@ export default {
                return {};
            }
         },
-        countries: async () => {
+        userCountries: async () => {
             try {
                 return Country.find()
             } catch (e) {
