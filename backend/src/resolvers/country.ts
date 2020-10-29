@@ -10,9 +10,12 @@ export default {
                return {};
            }
         },
-        countries: async () => {
+        countries: async (obj, {filter}, context, info) => {
             try {
-                return Country.find()
+                if (filter === " ") {
+                    return Country.find()
+                }
+                return Country.find({continent: filter})
             } catch (e) {
                 console.log(e);
                 return [];

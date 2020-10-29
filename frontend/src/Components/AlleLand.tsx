@@ -3,9 +3,10 @@ import {Table} from "react-bootstrap";
 import {gql, useQuery} from "@apollo/client";
 //import { useQuery } from 'react-apollo-hooks';
 
+
 const GET_COUNTRIES = gql`
-    query countries {
-        countries {
+    query countries ($filter: String!) {
+        countries (filter: $filter){
             country
             continent
             city
@@ -13,21 +14,27 @@ const GET_COUNTRIES = gql`
         }
     }
 `;
-interface Countries {
-    country: string
-    //continent: string
-    //city: string
-    //dish: string
-}
-interface CountriesData {
-  countriesData: Countries[];
-}
+
 const AlleLand = () => {
-    const { data, error, loading } = useQuery(GET_COUNTRIES);
+
+    function filterContinent(continent:string) {
+        sessionStorage.setItem('continent', continent);
+        window.location.reload();
+    }
+
+    const { data, error, loading } = useQuery(GET_COUNTRIES, {variables: { filter: sessionStorage.getItem('continent') || " " }},);
     if (error) return <p>Error! ${error}</p>
     return (
         <>
             <h1>Alle land</h1>
+            <button className={"Knapp"} onClick={() => filterContinent(" ")}>Alle land</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Asia")}>Asia</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Europe")}>Europe</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Africa")}>Africa</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Oceania")}>Oceania</button>
+            <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
+            <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
             {error ? <p>Oh no! {error}</p> : null}
             {loading ? (<p>Loading ...</p>) : (
             <Table striped bordered hover variant="dark">
