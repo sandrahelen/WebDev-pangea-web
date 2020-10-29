@@ -1,6 +1,7 @@
 import {User} from "../models/user.ts";
 import {Country} from "../models/country.ts";
 
+
 export default {
     Query: {
         user: async (obj, {username}, context, info) => {
@@ -23,14 +24,29 @@ export default {
 
         userCountries: async (root, {username}, context, info) => {
             try {
-                //const user = await User.findOne({username: username}).exec();
-                //return user.get('userCountries', Array)
+                //const user = await User.findOne({username: username});
+                //user.find({""});
                 //return User.find({username: username}, {
                 //    fields: {userCountries: 1},
                 //}).fetch()
                 //user.find()
-                return await User.findOne({ username: username}, 'userCountries').exec();
+                ;
+
+                //const user = await User.findOne({username: username}, )
+
+                //return await User.find({ username: username}, 'userCountries');
                 //return await user.aggregate([{$project: { username: username, country: { $arrayElemAt: ['$country.userCountries', 1]}}}])
+                //return await User.findOne({username: username}).userCountries.list()
+                /*
+                const allCountiries = User.find(
+                    {},
+                    {username: username},
+                    {fields: {userCountries: }}
+                ).get("userCountries")
+                console.log(allCountiries);
+                return allCountiries;
+
+                 */
             } catch (e) {
                 throw e;
             }
@@ -85,7 +101,7 @@ export default {
                 //console.log(user.countries);
                 //for( let x in user.userCountries){
                 //    if (x !== countr) {
-                await user.userCountries.push(countr);
+                await user.userCountries.push(countr.country);
                  user.save();
                 //    } else {
                 //        throw new Error("Dette landet er lagret fra før")

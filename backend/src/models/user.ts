@@ -4,7 +4,7 @@ import {countrySchema} from "./country.ts";
 const userSchema = new mongoose.Schema({
     username: String,
     loggedIn: Boolean,
-    userCountries: [countrySchema]
+    userCountries: [String]
 }, {
     collection: 'user'
 });
