@@ -1,6 +1,5 @@
 import React from "react";
 import {Table} from "react-bootstrap";
-//import SearchField from "react-search-field";
 
 const AlleLand = () => {
     return (
