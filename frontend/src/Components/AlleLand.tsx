@@ -22,7 +22,7 @@ const AlleLand = () => {
         window.location.reload();
     }
 
-    const { data, error, loading } = useQuery(GET_COUNTRIES, {variables: { filter: sessionStorage.getItem('continent') }},);
+    const { data, error, loading } = useQuery(GET_COUNTRIES, {variables: { filter: sessionStorage.getItem('continent') || " " }},);
     if (error) return <p>Error! ${error}</p>
     return (
         <>
