@@ -3,9 +3,10 @@ import {Table} from "react-bootstrap";
 import {gql, useQuery} from "@apollo/client";
 //import { useQuery } from 'react-apollo-hooks';
 
+
 const GET_COUNTRIES = gql`
-    query countries {
-        countries {
+    query countries ($filter: String!) {
+        countries (filter: $filter){
             country
             continent
             city
@@ -13,17 +14,9 @@ const GET_COUNTRIES = gql`
         }
     }
 `;
-interface Countries {
-    country: string
-    //continent: string
-    //city: string
-    //dish: string
-}
-interface CountriesData {
-  countriesData: Countries[];
-}
+
 const AlleLand = () => {
-    const { data, error, loading } = useQuery(GET_COUNTRIES);
+    const { data, error, loading } = useQuery(GET_COUNTRIES, {variables: { filter: 'Asia' }},);
     if (error) return <p>Error! ${error}</p>
     return (
         <>

@@ -3,7 +3,7 @@ import { gql } from "apollo-server-express";
 export default gql`
     extend type Query {
         country(country: String): Country
-        countries: [Country!]!
+        countries(filter: String): [Country!]!
     }
     type Country {
         _id: ID!
