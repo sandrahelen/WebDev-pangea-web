@@ -29,7 +29,6 @@ const AlleLand = () => {
     }
 
     function handleClick(country:any) {
-        //setCountry(country)
         if (country !== null || undefined) {
             sessionStorage.setItem('country', country.toString());
             console.log(sessionStorage.getItem('country'))
@@ -59,8 +58,24 @@ let input:any;
 
     return (
         <>
-
             <h1>Alle land</h1>
+            <form
+                onSubmit={e => {
+                    e.preventDefault();
+                    sessionStorage.setItem('search', input.value);
+                    window.location.reload();
+                }}
+                >
+                <input
+                    ref={node => {
+                        input = node;
+                    }}
+                    type={"text"}
+                    name={"search"}
+                    placeholder={"Skriv her"}
+                />
+                <input type='submit' value="Søk land"/>
+            </form>
             <button className={"Knapp"} onClick={() => filterContinent(" ")}>Alle land</button>
             <button className={"Knapp"} onClick={() => filterContinent("Asia")}>Asia</button>
             <button className={"Knapp"} onClick={() => filterContinent("Europe")}>Europe</button>
@@ -69,27 +84,7 @@ let input:any;
             <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
             <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
             <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
-             <button className={"Knapp"} onClick={() => sortCountry()}>Sorter land</button>
-
-            <form
-                onSubmit={e => {
-                    e.preventDefault();
-                    sessionStorage.setItem('search', input.value);
-                    window.location.reload();
-                }}
-
-                >
-                    <input
-                        ref={node => {
-                            input = node;
-                        }}
-                        type={"text"}
-                        name={"search"}
-                        placeholder={"Skriv her"}
-                    />
-                    <input type='submit' value="Søk land"/>
-                </form>
-
+            <button className={"Knapp"} onClick={() => sortCountry()}>Sorter land</button>
 
                 {error ? <p>Oh no! {error}</p> : null}
                 {loading ? (<p>Loading ...</p>) : (

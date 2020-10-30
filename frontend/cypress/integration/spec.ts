@@ -1,5 +1,6 @@
 describe('End-2-End test', () => {
     const username = "user";
+    const country = "New Zealand";
 
     beforeEach(() => {
         cy.visit("http://localhost:3000");
@@ -12,23 +13,19 @@ describe('End-2-End test', () => {
     it('should see all countries', () => {
         cy.contains("Alle land").click();
         cy.url().should('include', 'alle');
+        cy.get('input[type=text]').type(" ");
+        cy.get('input[type=submit]').click();
+        cy.contains("Afghanistan");
+        cy.contains("Sorter land").click();
+        cy.contains("Zimbabwe")
     });
 
     it('should filter countries by continent', () => {
         cy.contains("Alle land").click();
         cy.contains("Oceania").click();
-        cy.contains("New Zealand").should('exist');
+        cy.contains("2").click();
+        cy.contains(country).should('exist');
         cy.contains("Norway").should('not.exist');
-    });
-
-    it("should get error, user doesn't exist", () => {
-        cy.contains("Logg inn").click();
-        cy.url().should('include', 'login');
-        cy.get('input[type=text]').type(username);
-        cy.get('input[type=submit]').click();
-        cy.get('notification-message').children()
-            .should('contain', 'User does not exist')
-            .and('be.visible');
     });
 
     it('should register new user', () => {
@@ -44,16 +41,8 @@ describe('End-2-End test', () => {
         cy.url().should('include', 'login');
         cy.get('input[type=text]').type(username);
         cy.get('input[type=submit]').click();
+        cy.reload();
         cy.contains("Logg ut").click();
-    });
-
-    it('should get error, user exists', () => {
-        cy.contains("Regitrer").click();
-        cy.get('input[type=text]').type(username);
-        cy.get('input[type=submit]').click();
-        cy.get('notification-message').children()
-            .should('contain', 'User already exists')
-            .and('be.visible');
     });
 
     it('should see visited countries', () => {
@@ -62,21 +51,17 @@ describe('End-2-End test', () => {
         cy.get('input[type=submit]').click();
         cy.contains("Besøkte land").click();
         cy.url().should('include', 'mine');
-        cy.contains("Logg ut").click();
-        cy.url().should('include', 'alle');
-        cy.contains('Logg ut').click();
-    });
-
-    it('should add visited country', function () {
-        cy.contains("Logg inn").click();
-        cy.get('input[type=text]').type(username);
+        cy.get('input[type=text]').type(country);
         cy.get('input[type=submit]').click();
-        cy.contains("Besøkte land").click();
-        //TO-DO
-        cy.contains('Logg ut').click();
+        cy.reload();
+        cy.contains("Logg ut").click();
     });
 
-    it('should search for country', function () {
-        //TO-DO
+    it('should search for country', () => {
+        cy.contains("Alle land").click();
+        cy.get('input[type=text]').type("Eritrea");
+        cy.get('input[type=submit]').click();
+        cy.wait(3000);
+        cy.contains(country);
     });
 });

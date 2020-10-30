@@ -15,6 +15,7 @@ function App() {
         <Header/>
         <div className="main">
         <Switch>
+            <Route exact path="/" strict><AlleLand/></Route>
             <Route path="/alle"><AlleLand/></Route>
             <Route path="/mine"><MineLand/></Route>
             <Route path="/registrer"><Registrer/></Route>
