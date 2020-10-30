@@ -37,10 +37,6 @@ const AlleLand = () => {
         console.log(sessionStorage.getItem('sort'))
         window.location.reload();
     }*/
-    function search(searchtext:string) {
-        sessionStorage.setItem('search', searchtext);
-        window.location.reload();
-    }
 
 let input:any;
     const { data, error, loading } = useQuery(GET_COUNTRIES,
@@ -66,9 +62,7 @@ let input:any;
             <form
                 onSubmit={e => {
                     e.preventDefault();
-                    console.log(input.value)
                     sessionStorage.setItem('search', input.value);
-                    console.log(sessionStorage.getItem('search'))
                     window.location.reload();
                 }}
                 >
