@@ -11,3 +11,84 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html {
+  background-color: #DFAE74;
+}
+
+.app {
+  background-color: #DFAE74;
+  height: 100vh;
+}
+
+.main {
+  margin: auto 2%;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  width: 100vw;
+}
+
+.header-text {
+  position: absolute;
+  top: 50%;
+  left: 25vw;
+  transform: translate(-50%, -50%);
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 10vw;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul.pagination li {
+  display: inline-block;
+  width: 30px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+}
+
+ul.pagination li a {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+ul.pagination li.active a {
+  color: black;
+}
+ul.pagination li.active {
+  background-color: white;
+}
+
+ul.pagination li a:hover,
+ul.pagination li a.active {
+  color: grey;
+}
+
+.page-selection {
+  width: 48px;
+  height: 30px;
+  color: #337ab7;
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
