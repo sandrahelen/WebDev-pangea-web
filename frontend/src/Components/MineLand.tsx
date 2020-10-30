@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 import {Table} from "react-bootstrap";
 /*
 const GET_USER = gql`
@@ -22,14 +22,45 @@ const GET_VISITED = gql`
     }
 `;
 
+const ADD_VISITOR = gql`
+    mutation addVisitor ($username: String!, $country: String!) {
+        addVisitor (username: $username, country: $country){
+            country
+        }
+    }
+`;
+
 const MineLand = () => {
 
     const { data, error, loading } = useQuery(GET_VISITED, {variables: { username: 'ingvild'}},);
+    const [addCountry] = useMutation(ADD_VISITOR);
+    let input:any;
     if (error) return <p>Error! ${error}</p>
 
     return (
         <>
             <h1>Mine land</h1>
+            <form
+                    onSubmit={e => {
+                        e.preventDefault();
+                        addCountry({ variables: { username: 'ingvild', country: input.value } });
+                        input.value = '';
+                        window.location.reload();
+                    }}
+                >
+                    <p>Land:</p>
+                    <input
+                        id={"elementId"}
+                        ref={node => {
+                            input = node;
+                        }}
+                        type={"text"}
+                        name={"username"}
+                        placeholder={"Skriv her"}
+                    />
+                    <input type='submit' value="Registrer"/>
+                </form>
+
             {error ? <p>Oh no! {error}</p> : null}
             {loading ? (<p>Loading ...</p>) : (
             <Table striped bordered hover variant="dark">
