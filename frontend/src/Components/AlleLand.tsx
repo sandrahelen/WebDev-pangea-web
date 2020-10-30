@@ -17,7 +17,7 @@ const GET_COUNTRIES = gql`
 
 const AlleLand = () => {
     const [activePage, setActivePage] = useState(1);
-    //const [sort, setSort] = useState(1);
+    const [sort, setSort] = useState(1);
 
     function handlePageChange(pageNumber:number) {
         console.log(`active page is ${pageNumber}`)
@@ -28,22 +28,21 @@ const AlleLand = () => {
         sessionStorage.setItem('continent', continent);
         window.location.reload();
     }
-    /*function sortCountry() {
+    function sortCountry() {
         if (sort === 1) {
             setSort(-1);
-            //sessionStorage.setItem(-1)
         }
         else {
             setSort(1);
         }
         console.log(sort)
-    }*/
+    }
 
 let input:any;
     const { data, error, loading } = useQuery(GET_COUNTRIES,
         {variables: { filter: sessionStorage.getItem('continent') || " ",
                 search: sessionStorage.getItem('search') || " ",
-                sort: 1,
+                sort: sort,
                 skip: activePage !== 1 ? (activePage - 1) * 10 : 0
                 }},);
     if (error) return <p>Error! ${error}</p>
@@ -59,8 +58,7 @@ let input:any;
             <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
             <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
             <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
-
-
+             <button className={"Knapp"} onClick={() => sortCountry()}>Sorter land</button>
 
             <form
                 onSubmit={e => {
