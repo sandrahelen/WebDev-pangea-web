@@ -1,18 +1,6 @@
 import React from "react";
 import { gql, useQuery, useMutation } from '@apollo/client';
 import {Table} from "react-bootstrap";
-/*
-const GET_USER = gql`
-    query user($username: String!) {
-        user(username: $username) {
-            username
-        }
-    }
-`;
-const { loading, error, data } = useQuery(GET_USER, {variables: { username: 'test5' },});
-    if (loading) return null;
-    if (error) return <p>Error! ${error}</p>
-    <h1>Hello {data.user.username}!</h1>*/
 
 const GET_VISITED = gql`
     query getVisitedCountries ($username: String!) {
@@ -32,33 +20,22 @@ const ADD_VISITOR = gql`
 
 const MineLand = () => {
 
-    const { data, error, loading } = useQuery(GET_VISITED, {variables: { username: 'ingvild'}},);
+    const { data, error, loading } = useQuery(GET_VISITED, {variables: { username: sessionStorage.getItem('username')}},);
     const [addCountry] = useMutation(ADD_VISITOR);
     let input:any;
     if (error) return <p>Error! ${error}</p>
 
     return (
         <>
-            <h1>Hello {data.user.username}!</h1>
-            <p>{sessionStorage.getItem('username')}</p>
-        </>
-
-        );
-};
-export default MineLand;
-
-/*
-<>
             <h1>Mine land</h1>
             <form
                     onSubmit={e => {
                         e.preventDefault();
-                        addCountry({ variables: { username: 'ingvild', country: input.value } });
+                        addCountry({ variables: { username: sessionStorage.getItem('username'), country: input.value } });
                         input.value = '';
                         window.location.reload();
                     }}
                 >
-                    <p>Land:</p>
                     <input
                         id={"elementId"}
                         ref={node => {
@@ -68,7 +45,7 @@ export default MineLand;
                         name={"username"}
                         placeholder={"Skriv her"}
                     />
-                    <input type='submit' value="Registrer"/>
+                    <input type='submit' value="Legg til land"/>
                 </form>
 
             {error ? <p>Oh no! {error}</p> : null}
