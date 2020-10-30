@@ -12,15 +12,10 @@ const NEW_USER = gql`
 `;
 
 const Registrer = () => {
-    function Registrer() {
-        sessionStorage.setItem('status', 'innlogget');
-    }
 
     let input:any;
     const [addUser, {data, error}] = useMutation(NEW_USER);
     if (error) return <p>Error! ${error.message}</p>
-    //var inputValue = (<HTMLInputElement>document.getElementById(elementId)</HTMLInputElement>).value;
-
 
         return (
             <>
@@ -28,15 +23,15 @@ const Registrer = () => {
                     onSubmit={e => {
                         e.preventDefault();
                         addUser({ variables: { username: input.value } });
-                        input.value = '';
                         sessionStorage.setItem('status', 'innlogget');
+                        sessionStorage.setItem('username', input.value);
+                        input.value = '';
                         window.location.reload();
                     }}
                 >
                     <h1>Registrer ny bruker</h1>
                     <p>Brukernavn:</p>
                     <input
-                        id={"elementId"}
                         ref={node => {
                             input = node;
                         }}

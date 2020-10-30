@@ -17,7 +17,10 @@ const MineLand = () => {
     if (error) return <p>Error! ${error}</p>
 
     return (
-        <h1>Hello {data.user.username}!</h1>
+        <>
+            <h1>Hello {data.user.username}!</h1>
+            <p>{sessionStorage.getItem('username')}</p>
+        </>
 
         );
 };
