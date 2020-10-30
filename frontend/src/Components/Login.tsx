@@ -20,7 +20,8 @@ const Login = () => {
             <form
                 onSubmit={e => {
                     e.preventDefault();
-                    loginUser({ variables: { username: input.value } });
+                    loginUser({ variables: { username: input.value } }).catch(error);
+
                     if (!error) {
                     sessionStorage.setItem('status', 'innlogget');
                     sessionStorage.setItem('username', input.value);
