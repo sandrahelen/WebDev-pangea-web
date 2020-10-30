@@ -1,12 +1,11 @@
 import React from "react";
 import {Table} from "react-bootstrap";
 import {gql, useQuery} from "@apollo/client";
-//import { useQuery } from 'react-apollo-hooks';
 
 
 const GET_COUNTRIES = gql`
-    query countries ($filter: String!) {
-        countries (filter: $filter){
+    query countries ($filter: String!, $search: String!) {
+        countries (filter: $filter, search: $search){
             country
             continent
             city
@@ -52,8 +51,6 @@ let input:any;
             <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
             <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
             <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
-            <button className={"Knapp"} onClick={() => search("B")}>B</button>
-            <button className={"Knapp"} onClick={() => search("Mi")}>Mi</button>
 
 
             <form
@@ -106,43 +103,3 @@ let input:any;
         );
 };
 export default AlleLand;
-
-//       <SearchField placeholder="Search..." classNames="search"/>
-
-/*const GET_COUNTRY = gql`
-    query country($country: String!) {
-        country(country: $country) {
-            country
-            city
-            continent
-            dish
-        }
-    }
-`;*/
-
-/*
-<th>Hovedsted</th>
-                  <th>Kontinent</th>
-                  <th>Nasjonalrett</th>
-
-const { loading, error, data } = useQuery<CountriesData>(GET_COUNTRIES, );
-    if (error) return <p>Error! ${error}</p>
-    {data && data.countriesData && data.countriesData.map(countryData => (
-                    <tr>
-                        <td>{countryData.country}</td>
-                        <td>{countryData.city}</td>
-                        <td>{countryData.continent}</td>
-                        <td>{countryData.dish}</td>
-                    </tr>
-                ))}
- */
-
-/*
-const { loading, error, data } = useQuery(GET_COUNTRY, {variables: { country: 'Norway' },});
-<tr>
-                    <td>{data.country.country}</td>
-                    <td>{data.country.city}</td>
-                    <td>{data.country.continent}</td>
-                    <td>{data.country.dish}</td>
-                </tr>
- */
