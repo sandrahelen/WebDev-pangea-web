@@ -39,6 +39,16 @@ const MineLand = () => {
 
     return (
         <>
+            <h1>Hello {data.user.username}!</h1>
+            <p>{sessionStorage.getItem('username')}</p>
+        </>
+
+        );
+};
+export default MineLand;
+
+/*
+<>
             <h1>Mine land</h1>
             <form
                     onSubmit={e => {
