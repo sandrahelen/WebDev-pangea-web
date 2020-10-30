@@ -76,7 +76,7 @@ let input:any;
                 />
                 <input type='submit' value="Søk land"/>
             </form>
-            <button className={"Knapp"} onClick={() => filterContinent(" ")}>Alle land</button>
+            <button className={"Knapp"} id={"alle"} onClick={() => filterContinent(" ")}>Alle land</button>
             <button className={"Knapp"} onClick={() => filterContinent("Asia")}>Asia</button>
             <button className={"Knapp"} onClick={() => filterContinent("Europe")}>Europe</button>
             <button className={"Knapp"} onClick={() => filterContinent("Africa")}>Africa</button>

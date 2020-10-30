@@ -54,14 +54,19 @@ describe('End-2-End test', () => {
         cy.get('input[type=text]').type(country);
         cy.get('input[type=submit]').click();
         cy.reload();
+        cy.contains("Besøkte land").click();
+        cy.contains(country);
         cy.contains("Logg ut").click();
     });
 
     it('should search for country', () => {
         cy.contains("Alle land").click();
-        cy.get('input[type=text]').type("Eritrea");
+        cy.get('#alle').click();
+        cy.get('input[type=text]').type(country);
         cy.get('input[type=submit]').click();
-        cy.wait(3000);
-        cy.contains(country);
+        cy.contains(country).click();
+        cy.url().should('include', 'info');
+        cy.contains('Nasjonalrett');
+        cy.contains('Bacon and egg pie, lamb, pavlova');
     });
 });
