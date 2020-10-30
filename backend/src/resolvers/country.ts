@@ -10,10 +10,16 @@ export default {
                return {};
            }
         },
-        countries: async (obj, {filter}, context, info) => {
+        countries: async (obj, {filter, search}, context, info) => {
             try {
                 if (filter === " ") {
-                    return Country.find()
+                    if (search === " ") {
+                        return Country.find()
+                    }
+                    /*if (sort === "true") {
+                        return Country.find({country: /^A/}).sort({continent: 1})
+                    }*/
+                    return Country.find({country: new RegExp(search)})
                 }
                 return Country.find({continent: filter})
             } catch (e) {

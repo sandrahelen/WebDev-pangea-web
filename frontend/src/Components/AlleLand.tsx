@@ -21,8 +21,25 @@ const AlleLand = () => {
         sessionStorage.setItem('continent', continent);
         window.location.reload();
     }
+    /*function sortContinent() {
+        if (sessionStorage.getItem('sort') === 'false') {
+            sessionStorage.setItem('sort', "true");
+        }
+        else {
+            sessionStorage.setItem('sort', 'false');
+        }
+        console.log(sessionStorage.getItem('sort'))
+        window.location.reload();
+    }*/
+    function search(searchtext:string) {
+        sessionStorage.setItem('search', searchtext);
+        window.location.reload();
+    }
 
-    const { data, error, loading } = useQuery(GET_COUNTRIES, {variables: { filter: sessionStorage.getItem('continent') || " " }},);
+let input:any;
+    const { data, error, loading } = useQuery(GET_COUNTRIES,
+        {variables: { filter: sessionStorage.getItem('continent') || " ",
+                search: sessionStorage.getItem('search') || " "}},);
     if (error) return <p>Error! ${error}</p>
     return (
         <>
@@ -35,6 +52,31 @@ const AlleLand = () => {
             <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
             <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
             <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
+            <button className={"Knapp"} onClick={() => search("B")}>B</button>
+            <button className={"Knapp"} onClick={() => search("Mi")}>Mi</button>
+
+
+            <form
+                onSubmit={e => {
+                    e.preventDefault();
+                    console.log(input.value)
+                    sessionStorage.setItem('search', input.value);
+                    console.log(sessionStorage.getItem('search'))
+                    window.location.reload();
+                }}
+                >
+                    <input
+                        ref={node => {
+                            input = node;
+                        }}
+                        type={"text"}
+                        name={"search"}
+                        placeholder={"Skriv her"}
+                    />
+                    <input type='submit' value="Søk land"/>
+                </form>
+
+
             {error ? <p>Oh no! {error}</p> : null}
             {loading ? (<p>Loading ...</p>) : (
             <Table striped bordered hover variant="dark">
