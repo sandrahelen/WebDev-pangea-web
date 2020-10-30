@@ -1,11 +1,11 @@
 import {ApolloServer, gql} from "apollo-server-express";
 import typeDefs from "./typeDefs/index.ts";
 import resolvers from "./resolvers/index.ts";
-import session from "express-session";
 const express = require("express");
 import mongoose from "mongoose";
 const cors = require("cors");
-import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME} from "./config.ts";
+import { APP_PORT, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME} from "./config.ts";
+
 
 
 (async () => {
@@ -20,9 +20,6 @@ import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME}
         app.use(cors());
         const server = new ApolloServer({
             typeDefs, resolvers, playground: true, introspection: true, //mocks:true
-            //context: {
-            //  db: mongoose.connect(`mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`)
-            //}
         });
 
         server.applyMiddleware({app});

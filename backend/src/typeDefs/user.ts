@@ -9,13 +9,11 @@ export default gql`
         signUp(username: String!): User
         signIn(username: String!): User
         signOut(username: String!): Boolean
-        addCountry(country: String!, username: String!): Country
     }
 
     type User {
         _id: ID!
         username: String!
         loggedIn: Boolean
-        countries: [Country]
     }
 `

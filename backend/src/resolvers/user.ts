@@ -19,6 +19,7 @@ export default {
                 return [];
             }
         }
+
     },
     Mutation: {
         signUp: async (root, {username}, context, info) => {
@@ -60,19 +61,7 @@ export default {
             } catch (e){
                 throw e;
             }
-        },
-
-        addCountry: async (root, {country, username}, context, info) => {
-            try {
-                //const user = await User.findOne({ username: username })
-                //if (user){
-                    //await user.countries.push({ country: country});
-                await User.updateOne({ username: username}, {$addToSet: {countries: country}})
-                    //return user.countries;
-               // }
-            } catch (e) {
-                throw e;
-            }
         }
+
     }
 }
