@@ -1,11 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import {Table} from "react-bootstrap";
 import {gql, useQuery} from "@apollo/client";
-
+import Pagination from "react-js-pagination";
+//import Pagination from "react-bootstrap/Pagination";
 
 const GET_COUNTRIES = gql`
-    query countries ($filter: String!, $search: String!) {
-        countries (filter: $filter, search: $search){
+    query countries ($filter: String!, $search: String!, $skip: Int) {
+        countries (filter: $filter, search: $search, skip: $skip){
             country
             continent
             city
@@ -15,6 +16,12 @@ const GET_COUNTRIES = gql`
 `;
 
 const AlleLand = () => {
+    const [activePage, setActivePage] = useState(1);
+
+    function handlePageChange(pageNumber:number) {
+        console.log(`active page is ${pageNumber}`)
+        setActivePage(pageNumber);
+    }
 
     function filterContinent(continent:string) {
         sessionStorage.setItem('continent', continent);
@@ -38,10 +45,13 @@ const AlleLand = () => {
 let input:any;
     const { data, error, loading } = useQuery(GET_COUNTRIES,
         {variables: { filter: sessionStorage.getItem('continent') || " ",
-                search: sessionStorage.getItem('search') || " "}},);
+                search: sessionStorage.getItem('search') || " ",
+                skip: activePage !== 1 ? (activePage - 1) * 10 : 0
+                }},);
     if (error) return <p>Error! ${error}</p>
     return (
         <>
+
             <h1>Alle land</h1>
             <button className={"Knapp"} onClick={() => filterContinent(" ")}>Alle land</button>
             <button className={"Knapp"} onClick={() => filterContinent("Asia")}>Asia</button>
@@ -98,7 +108,9 @@ let input:any;
 
                 </tbody>
             </Table>
+
             )}
+            <Pagination totalItemsCount={243} onChange={handlePageChange.bind(activePage)} activePage={activePage}/>
         </>
         );
 };
