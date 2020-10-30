@@ -29,8 +29,12 @@ const AlleLand = () => {
     }
 
     function handleClick(country:any) {
-        setCountry(country)
-        sessionStorage.setItem('country', country);
+        //setCountry(country)
+        if (country !== null || undefined) {
+            sessionStorage.setItem('country', country.toString());
+        console.log(sessionStorage.getItem('country'))
+        }
+
     }
 
 
@@ -91,14 +95,14 @@ let input:any;
                         <thead>
                         <tr>
                             <th>Land</th>
-                            <th>Hovedsted</th>
+                            <th>Kontinent</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         {data.countries.map((countryData: { country: React.ReactNode; city: React.ReactNode; continent: React.ReactNode; dish: React.ReactNode; }) => (
                             <tr>
-                                <td onClick={handleClick.bind(countryData.country)}>
+                                <td onClick={() => handleClick(countryData.country)}>
                                 <a href="/info">  {countryData.country}</a>
                                 </td>
                                 <td>{countryData.continent}</td>
