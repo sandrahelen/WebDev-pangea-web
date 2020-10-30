@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {Table} from "react-bootstrap";
 import {gql, useQuery} from "@apollo/client";
 import Pagination from "react-js-pagination";
-//import Pagination from "react-bootstrap/Pagination";
 
 const GET_COUNTRIES = gql`
     query countries ($filter: String!, $search: String!, $skip: Int) {
@@ -17,6 +16,7 @@ const GET_COUNTRIES = gql`
 
 const AlleLand = () => {
     const [activePage, setActivePage] = useState(1);
+    const [country, setCountry] = useState();
 
     function handlePageChange(pageNumber:number) {
         console.log(`active page is ${pageNumber}`)
@@ -27,6 +27,13 @@ const AlleLand = () => {
         sessionStorage.setItem('continent', continent);
         window.location.reload();
     }
+
+    function handleClick(country:any) {
+        setCountry(country)
+        sessionStorage.setItem('country', country);
+    }
+
+
     /*function sortContinent() {
         if (sessionStorage.getItem('sort') === 'false') {
             sessionStorage.setItem('sort', "true");
@@ -45,26 +52,26 @@ let input:any;
                 skip: activePage !== 1 ? (activePage - 1) * 10 : 0
                 }},);
     if (error) return <p>Error! ${error}</p>
-    return (
-        <>
 
-            <h1>Alle land</h1>
-            <button className={"Knapp"} onClick={() => filterContinent(" ")}>Alle land</button>
-            <button className={"Knapp"} onClick={() => filterContinent("Asia")}>Asia</button>
-            <button className={"Knapp"} onClick={() => filterContinent("Europe")}>Europe</button>
-            <button className={"Knapp"} onClick={() => filterContinent("Africa")}>Africa</button>
-            <button className={"Knapp"} onClick={() => filterContinent("Oceania")}>Oceania</button>
-            <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
-            <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
-            <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
+        return (
+            <>
+                <h1>Alle land</h1>
+                <button className={"Knapp"} onClick={() => filterContinent(" ")}>Alle land</button>
+                <button className={"Knapp"} onClick={() => filterContinent("Asia")}>Asia</button>
+                <button className={"Knapp"} onClick={() => filterContinent("Europe")}>Europe</button>
+                <button className={"Knapp"} onClick={() => filterContinent("Africa")}>Africa</button>
+                <button className={"Knapp"} onClick={() => filterContinent("Oceania")}>Oceania</button>
+                <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
+                <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
+                <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
 
 
-            <form
-                onSubmit={e => {
-                    e.preventDefault();
-                    sessionStorage.setItem('search', input.value);
-                    window.location.reload();
-                }}
+                <form
+                    onSubmit={e => {
+                        e.preventDefault();
+                        sessionStorage.setItem('search', input.value);
+                        window.location.reload();
+                    }}
                 >
                     <input
                         ref={node => {
@@ -78,34 +85,35 @@ let input:any;
                 </form>
 
 
-            {error ? <p>Oh no! {error}</p> : null}
-            {loading ? (<p>Loading ...</p>) : (
-            <Table striped bordered hover variant="dark">
-                <thead>
-                <tr>
-                    <th>Land</th>
-                    <th>Hovedsted</th>
-                    <th>Kontinent</th>
-                    <th>Nasjonalrett</th>
-                </tr>
-                </thead>
-                <tbody>
+                {error ? <p>Oh no! {error}</p> : null}
+                {loading ? (<p>Loading ...</p>) : (
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                        <tr>
+                            <th>Land</th>
+                            <th>Hovedsted</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                {data.countries.map((countryData: { country: React.ReactNode; city: React.ReactNode; continent: React.ReactNode; dish: React.ReactNode; }) => (
-                    <tr>
-                        <td>{countryData.country}</td>
-                        <td>{countryData.city}</td>
-                        <td>{countryData.continent}</td>
-                        <td>{countryData.dish}</td>
-                    </tr>
-                ))}
+                        {data.countries.map((countryData: { country: React.ReactNode; city: React.ReactNode; continent: React.ReactNode; dish: React.ReactNode; }) => (
+                            <tr>
+                                <td onClick={handleClick.bind(countryData.country)}>
+                                <a href="/info">  {countryData.country}</a>
+                                </td>
+                                <td>{countryData.continent}</td>
 
-                </tbody>
-            </Table>
+                            </tr>
+                        ))}
 
-            )}
-            <Pagination totalItemsCount={243} onChange={handlePageChange.bind(activePage)} activePage={activePage}/>
-        </>
+                        </tbody>
+                    </Table>
+
+                )}
+                <Pagination totalItemsCount={243} onChange={handlePageChange.bind(activePage)} activePage={activePage}/>
+            </>
         );
+
+
 };
 export default AlleLand;

@@ -18,6 +18,7 @@ function App() {
             <Route path="/mine"><MineLand/></Route>
             <Route path="/registrer"><Registrer/></Route>
             <Route path="/login"><Login/></Route>
+            <Route path="/info"><Info/></Route>
         </Switch>
         </div>
         </div>
