@@ -32,9 +32,8 @@ const AlleLand = () => {
         //setCountry(country)
         if (country !== null || undefined) {
             sessionStorage.setItem('country', country.toString());
-        console.log(sessionStorage.getItem('country'))
+            console.log(sessionStorage.getItem('country'))
         }
-
     }
 
 
