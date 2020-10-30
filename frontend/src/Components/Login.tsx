@@ -21,11 +21,13 @@ const Login = () => {
                 onSubmit={e => {
                     e.preventDefault();
                     loginUser({ variables: { username: input.value } });
+                    if (!error) {
                     sessionStorage.setItem('status', 'innlogget');
                     sessionStorage.setItem('username', input.value);
                     input.value = '';
-                    console.log()
                     window.location.reload();
+                    }
+
                 }}
                 >
                 <h1>Logg inn med eksisterende bruker</h1>

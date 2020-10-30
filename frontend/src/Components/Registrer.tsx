@@ -21,10 +21,12 @@ const Registrer = () => {
                     onSubmit={e => {
                         e.preventDefault();
                         addUser({ variables: { username: input.value } });
-                        sessionStorage.setItem('status', 'innlogget');
-                        sessionStorage.setItem('username', input.value);
-                        input.value = '';
-                        window.location.reload();
+                        if (!error) {
+                            sessionStorage.setItem('status', 'innlogget');
+                            sessionStorage.setItem('username', input.value);
+                            input.value = '';
+                            window.location.reload();
+                        }
                     }}
                 >
                     <h1>Registrer ny bruker</h1>
