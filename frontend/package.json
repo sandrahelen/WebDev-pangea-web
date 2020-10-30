@@ -25,8 +25,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-search-field": "^1.1.0",
-    "reactstrap": "^8.6.0",
-    "typescript": "^3.8.3"
+    "reactstrap": "^8.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^5.5.0",
   }
 }
