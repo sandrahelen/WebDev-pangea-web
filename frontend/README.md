@@ -66,6 +66,8 @@ De fleste komponentene vi har er skrevet som funksjonelle komponenter. Tidligere
 Gjennom prosjektet har all kodedeling gått gjennom gitlab der vi har benyttet oss av issues og brancher på en hensiktsmessig måte. Hvert issue har fått en label som “to do”, “doing” og “review”. Når et issue er ferdig legges det under review og et annet gruppemedlem ser gjennom koden. Dette er for å sikre kvalitet og at alle på gruppa skal ha oversikt over hva som er blitt gjort. Hvert issue har fått sin egen branch, så langt det det er hensiktsmessig, for å unngå problemer ved merging av brancher. Vi har valgt å ha eller ha mange små issues enn få store fordi det har gjort arbeidsfordeling og samarbeid lettere.
 
 # Testing
-Vi har end-2-end testing
+Vi har end-2-end testing i cypress. Her tester vi alle komponentene til prosjektet. Test 1 sjekker at siden blir lastet inn riktig. Test 2 sjekker at siden “Alle land” fungerer, og tester også sortering. Test 3 tester at man kan filtrere land etter kontinent, her testes det for Oseania og at New Zealand er et land der, men ikke Norge. Test 4 registrerer en ny bruker “user”. Test 5 logger inn med bruker “user”. Test 6 går inn på user sine besøkte land, og legger til New Zealand som et besøkt land. Test 7 sjekker at søkefunksjonen i alle land fungerer og går inn på New Zealand for å få mer informasjon om landet.
 
+For å kjøre testen skriv `npx cypress open` (backend og frontend må kjøre for at end-2-end testen skal virke).
+Gå inn på spec.ts og testen vil starte automatisk, og man kan trykke gjennom testene på høyre side for å se snapshots av de ulike delene.
 
