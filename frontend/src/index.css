@@ -57,7 +57,7 @@ ul {
 ul.pagination li {
   display: inline-block;
   width: 30px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid black;
   display: flex;
   justify-content: center;
   font-size: 25px;
@@ -65,20 +65,20 @@ ul.pagination li {
 
 ul.pagination li a {
   text-decoration: none;
-  color: #337ab7;
+  color: black;
   font-size: 20px;
 }
 
 ul.pagination li.active a {
-  color: white;
+  color: black;
 }
 ul.pagination li.active {
-  background-color: #337ab7;
+  background-color: white;
 }
 
 ul.pagination li a:hover,
 ul.pagination li a.active {
-  color: blue;
+  color: grey;
 }
 
 .page-selection {
