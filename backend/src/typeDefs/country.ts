@@ -2,8 +2,8 @@ import { gql } from "apollo-server-express";
 
 export default gql`
     extend type Query {
-        country(country: String, skip: Int, take: Int): Country
-        countries(filter: String, search: String): [Country!]!
+        country(country: String): Country
+        countries(filter: String, search: String, skip: Int): [Country!]!
         getVisitors(country:String): [String]
         getVisitedCountries(username: String): [Country]
     }

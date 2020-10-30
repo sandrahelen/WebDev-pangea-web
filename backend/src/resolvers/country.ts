@@ -11,11 +11,11 @@ export default {
                return {};
            }
         },
-        countries: async (obj, {filter, search}, context, info) => {
+        countries: async (obj, {filter, search, skip}, context, info) => {
             try {
                 if (filter === " ") {
                     if (search === " ") {
-                        return Country.find()
+                        return Country.find().skip(skip).limit(10).exec()
                     }
                     /*if (sort === "true") {
                         return Country.find({country: /^A/}).sort({continent: 1})
