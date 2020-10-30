@@ -1,15 +1,33 @@
 import React from "react";
+import {gql, useMutation} from "@apollo/client";
+
+const LOGIN_USER = gql`
+    mutation signIn($username: String!) {
+        signIn(username: $username) {
+            username
+        }
+    }
+`;
 
 const Login = () => {
     let input:any;
-    function Logginn() {
-        sessionStorage.setItem('status', 'innlogget');
-        sessionStorage.setItem('username', input.value);
-        console.log(sessionStorage.getItem('username'))
-    }
+
+    const [loginUser, {error}] = useMutation(LOGIN_USER);
+    if (error) return <p>Error! ${error.message}</p>
+
     return (
         <>
-            <form onSubmit={Logginn}>
+            <form
+                onSubmit={e => {
+                    e.preventDefault();
+                    loginUser({ variables: { username: input.value } });
+                    sessionStorage.setItem('status', 'innlogget');
+                    sessionStorage.setItem('username', input.value);
+                    input.value = '';
+                    console.log()
+                    window.location.reload();
+                }}
+                >
                 <h1>Logg inn med eksisterende bruker</h1>
                 <p>Brukernavn:</p>
                 <input
@@ -18,10 +36,10 @@ const Login = () => {
                     }}
                     type={"text"}
                     name={"username"}
-                    placeholder={"Skriv her"}/>
-                <input type='submit' value="logg inn"/>
+                    placeholder={"Skriv her"}
+                />
+                <input type='submit' value="Logg inn"/>
             </form>
-
         </>
         );
 };

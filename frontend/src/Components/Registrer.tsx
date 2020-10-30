@@ -1,7 +1,5 @@
-import React, {useState} from "react";
-import { Mutation } from "@apollo/client/react/components";
-import {gql, useMutation, useQuery} from '@apollo/client';
-import {Table} from "react-bootstrap";
+import React from "react";
+import {gql, useMutation} from '@apollo/client';
 
 const NEW_USER = gql`
     mutation signUp($username: String!) {
@@ -14,7 +12,7 @@ const NEW_USER = gql`
 const Registrer = () => {
 
     let input:any;
-    const [addUser, {data, error}] = useMutation(NEW_USER);
+    const [addUser, {error}] = useMutation(NEW_USER);
     if (error) return <p>Error! ${error.message}</p>
 
         return (

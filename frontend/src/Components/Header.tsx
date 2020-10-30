@@ -1,11 +1,24 @@
 import React from "react";
 import {Nav, Navbar} from "react-bootstrap";
 import pangea from "./pangea.png"
+import {gql, useMutation} from "@apollo/client";
+
+const LOGOUT_USER = gql`
+    mutation signOut($username: String!) {
+        signOut(username: $username)
+    }
+`;
 
 const Header = () => {
     function Loggut() {
         sessionStorage.setItem('status', 'utlogget');
+        logoutUser({ variables: { username: sessionStorage.getItem('username') } });
+        sessionStorage.setItem('username', '')
     }
+
+    const [logoutUser, {error}] = useMutation(LOGOUT_USER);
+    if (error) return <p>Error! ${error.message}</p>
+
     if (sessionStorage.getItem('status') === 'innlogget') {
         return (
         <>
