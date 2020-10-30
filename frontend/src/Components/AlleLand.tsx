@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {Table} from "react-bootstrap";
 import {gql, useQuery} from "@apollo/client";
 import Pagination from "react-js-pagination";
-//import Pagination from "react-bootstrap/Pagination";
 
 const GET_COUNTRIES = gql`
     query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
@@ -28,9 +27,20 @@ const AlleLand = () => {
         sessionStorage.setItem('continent', continent);
         window.location.reload();
     }
+
+    function handleClick(country:any) {
+        //setCountry(country)
+        if (country !== null || undefined) {
+            sessionStorage.setItem('country', country.toString());
+            console.log(sessionStorage.getItem('country'))
+        }
+    }
+
+
     function sortCountry() {
         if (sort === 1) {
             setSort(-1);
+
         }
         else {
             setSort(1);
@@ -46,6 +56,7 @@ let input:any;
                 skip: activePage !== 1 ? (activePage - 1) * 10 : 0
                 }},);
     if (error) return <p>Error! ${error}</p>
+
     return (
         <>
 
@@ -66,6 +77,7 @@ let input:any;
                     sessionStorage.setItem('search', input.value);
                     window.location.reload();
                 }}
+
                 >
                     <input
                         ref={node => {
@@ -79,34 +91,35 @@ let input:any;
                 </form>
 
 
-            {error ? <p>Oh no! {error}</p> : null}
-            {loading ? (<p>Loading ...</p>) : (
-            <Table striped bordered hover variant="dark">
-                <thead>
-                <tr>
-                    <th>Land</th>
-                    <th>Hovedsted</th>
-                    <th>Kontinent</th>
-                    <th>Nasjonalrett</th>
-                </tr>
-                </thead>
-                <tbody>
+                {error ? <p>Oh no! {error}</p> : null}
+                {loading ? (<p>Loading ...</p>) : (
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                        <tr>
+                            <th>Land</th>
+                            <th>Kontinent</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                {data.countries.map((countryData: { country: React.ReactNode; city: React.ReactNode; continent: React.ReactNode; dish: React.ReactNode; }) => (
-                    <tr>
-                        <td>{countryData.country}</td>
-                        <td>{countryData.city}</td>
-                        <td>{countryData.continent}</td>
-                        <td>{countryData.dish}</td>
-                    </tr>
-                ))}
+                        {data.countries.map((countryData: { country: React.ReactNode; city: React.ReactNode; continent: React.ReactNode; dish: React.ReactNode; }) => (
+                            <tr>
+                                <td onClick={() => handleClick(countryData.country)}>
+                                <a href="/info">  {countryData.country}</a>
+                                </td>
+                                <td>{countryData.continent}</td>
 
-                </tbody>
-            </Table>
+                            </tr>
+                        ))}
 
-            )}
-            <Pagination totalItemsCount={243} onChange={handlePageChange.bind(activePage)} activePage={activePage}/>
-        </>
+                        </tbody>
+                    </Table>
+
+                )}
+                <Pagination totalItemsCount={243} onChange={handlePageChange.bind(activePage)} activePage={activePage}/>
+            </>
         );
+
+
 };
 export default AlleLand;
