@@ -15,14 +15,14 @@ export default {
             try {
                 if (filter === " ") {
                     if (search === " ") {
-                        return Country.find().skip(skip).limit(10).exec()
+                        return Country.find().skip(skip).limit(10).exec();
                     }
                     /*if (sort === "true") {
                         return Country.find({country: /^A/}).sort({continent: 1})
                     }*/
-                    return Country.find({country: new RegExp(search)})
+                    return Country.find({country: new RegExp(search)}).skip(skip).limit(10).exec()
                 }
-                return Country.find({continent: filter})
+                return Country.find({continent: filter}).skip(skip).limit(10).exec();
             } catch (e) {
                 console.log(e);
                 return [];
