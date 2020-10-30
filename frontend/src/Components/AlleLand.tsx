@@ -4,8 +4,8 @@ import {gql, useQuery} from "@apollo/client";
 import Pagination from "react-js-pagination";
 
 const GET_COUNTRIES = gql`
-    query countries ($filter: String!, $search: String!, $skip: Int) {
-        countries (filter: $filter, search: $search, skip: $skip){
+    query countries ($filter: String!, $search: String!, $sort: Int, $skip: Int) {
+        countries (filter: $filter, search: $search, sort: $sort, skip: $skip){
             country
             continent
             city
@@ -16,7 +16,7 @@ const GET_COUNTRIES = gql`
 
 const AlleLand = () => {
     const [activePage, setActivePage] = useState(1);
-    const [country, setCountry] = useState();
+    const [sort, setSort] = useState(1);
 
     function handlePageChange(pageNumber:number) {
         console.log(`active page is ${pageNumber}`)
@@ -37,44 +37,47 @@ const AlleLand = () => {
     }
 
 
-    /*function sortContinent() {
-        if (sessionStorage.getItem('sort') === 'false') {
-            sessionStorage.setItem('sort', "true");
+    function sortCountry() {
+        if (sort === 1) {
+            setSort(-1);
+
         }
         else {
-            sessionStorage.setItem('sort', 'false');
+            setSort(1);
         }
-        console.log(sessionStorage.getItem('sort'))
-        window.location.reload();
-    }*/
+        console.log(sort)
+    }
 
 let input:any;
     const { data, error, loading } = useQuery(GET_COUNTRIES,
         {variables: { filter: sessionStorage.getItem('continent') || " ",
                 search: sessionStorage.getItem('search') || " ",
+                sort: sort,
                 skip: activePage !== 1 ? (activePage - 1) * 10 : 0
                 }},);
     if (error) return <p>Error! ${error}</p>
 
-        return (
-            <>
-                <h1>Alle land</h1>
-                <button className={"Knapp"} onClick={() => filterContinent(" ")}>Alle land</button>
-                <button className={"Knapp"} onClick={() => filterContinent("Asia")}>Asia</button>
-                <button className={"Knapp"} onClick={() => filterContinent("Europe")}>Europe</button>
-                <button className={"Knapp"} onClick={() => filterContinent("Africa")}>Africa</button>
-                <button className={"Knapp"} onClick={() => filterContinent("Oceania")}>Oceania</button>
-                <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
-                <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
-                <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
+    return (
+        <>
 
+            <h1>Alle land</h1>
+            <button className={"Knapp"} onClick={() => filterContinent(" ")}>Alle land</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Asia")}>Asia</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Europe")}>Europe</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Africa")}>Africa</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Oceania")}>Oceania</button>
+            <button className={"Knapp"} onClick={() => filterContinent("North America")}>North America</button>
+            <button className={"Knapp"} onClick={() => filterContinent("South America")}>South America</button>
+            <button className={"Knapp"} onClick={() => filterContinent("Antarctica")}>Antactica</button>
+             <button className={"Knapp"} onClick={() => sortCountry()}>Sorter land</button>
 
-                <form
-                    onSubmit={e => {
-                        e.preventDefault();
-                        sessionStorage.setItem('search', input.value);
-                        window.location.reload();
-                    }}
+            <form
+                onSubmit={e => {
+                    e.preventDefault();
+                    sessionStorage.setItem('search', input.value);
+                    window.location.reload();
+                }}
+
                 >
                     <input
                         ref={node => {
