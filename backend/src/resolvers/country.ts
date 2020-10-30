@@ -19,13 +19,21 @@ export default {
                 return [];
             }
         },
-        getVisitedCountries: async (root, {username}, contect, info) => {
+        getVisitedCountries: async (root, {username}, context, info) => {
             try {
                 return await Country.find({
                    "users": {$all: [username]}
                 })
             } catch (e) {
-
+                throw e;
+            }
+        },
+        getVisitors: async (root, {country}, context, info) => {
+            try{
+                const countr = await Country.findOne({country: country})
+                return countr.users;
+            } catch (e) {
+                throw e;
             }
         }
     },

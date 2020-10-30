@@ -4,7 +4,7 @@ export default gql`
     extend type Query {
         country(country: String, skip: Int, take: Int): Country
         countries: [Country!]!
-        #getVisitors(country:String): [User]
+        getVisitors(country:String): [String]
         getVisitedCountries(username: String): [Country]
     }
     
