@@ -5,9 +5,9 @@ export const countrySchema = new mongoose.Schema({
     continent: String,
     city: String,
     dish: String,
-    visitedAt: String
+    visitedAt: String,
+    users: [String]
 }, {
-    //timestamps: true
     collection: 'land'
 });
 
