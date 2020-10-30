@@ -4,7 +4,7 @@ import resolvers from "./resolvers/index.ts";
 const express = require("express");
 import mongoose from "mongoose";
 const cors = require("cors");
-import { APP_PORT, IN_PROD, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME} from "./config.ts";
+import { APP_PORT, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME} from "./config.ts";
 
 
 

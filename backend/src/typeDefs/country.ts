@@ -4,7 +4,14 @@ export default gql`
     extend type Query {
         country(country: String, skip: Int, take: Int): Country
         countries: [Country!]!
+        #getVisitors(country:String): [User]
+        getVisitedCountries(username: String): [Country]
     }
+    
+    extend type Mutation {
+        addVisitor(username: String, country: String): Country
+    }
+   
     type Country {
         _id: ID!
         country: String!
@@ -12,7 +19,9 @@ export default gql`
         city: String
         dish: String
         visitedAt: String
+        users: [String]
     }
+    
 `
 
 
