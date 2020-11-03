@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "NODE_ENV=production node -r esm .",
-    "dev": "NODE_ENV=development node -r esm ."
+    "start": "node -r esm .",
+    "dev": "node -r esm ."
   },
   "author": "",
   "license": "ISC",
